@@ -19,7 +19,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 import ReactMarkdown from "react-markdown";
 import OpenAI from "openai";
 
-const ConversationPage = () => {
+const CodePage = () => {
   const router = useRouter();
   const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>(
     []
@@ -36,7 +36,6 @@ const ConversationPage = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
       const userMessage = {
         role: "user",
         content: values.prompt,
@@ -142,4 +141,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodePage;

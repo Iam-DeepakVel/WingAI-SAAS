@@ -35,7 +35,6 @@ const ConversationPage = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
       const userMessage = {
         role: "user",
         content: values.prompt,
