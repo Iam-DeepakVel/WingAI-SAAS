@@ -17,10 +17,13 @@ import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import ReactMarkdown from "react-markdown";
+import OpenAI from "openai";
 
 const ConversationPage = () => {
   const router = useRouter();
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>(
+    []
+  );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,7 +47,7 @@ const ConversationPage = () => {
         messages: newMessages,
       });
 
-      setMessages((current: any) => [...current, userMessage, response.data]);
+      setMessages((current) => [...current, userMessage, response.data]);
     } catch (error: any) {
       // TODO Open Pro Modal
       console.log(error);
@@ -122,9 +125,9 @@ const ConversationPage = () => {
                         <pre {...props} />
                       </div>
                     ),
-                    code: ({node,...props})=>(
-                      <code className="bg-black/10 rounded-lg p-1" {...props}/>
-                    )
+                    code: ({ node, ...props }) => (
+                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                    ),
                   }}
                   className="text-sm overflow-hidden leading-7"
                 >
